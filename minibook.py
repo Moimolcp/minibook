@@ -12,7 +12,7 @@ def make_book(path):
 
     p = pdf_in.getPage(1)
     scale = (792/float(p.cropBox.upperRight[1]))/2
-    fix = (612-float(p.cropBox.upperRight[0]))*scale
+    fix = (612/2-float(p.cropBox.upperRight[0])*scale)/2
     n = pdf_in.getNumPages()
     n8 = math.ceil(n/8)
     k = n8*8 - n
@@ -27,12 +27,10 @@ def make_book(path):
     print( "{:.2f}".format(100)+"%")
     print("Terminado")
 
-
     grid = PdfFileReader("grid.pdf")
 
     transI = [[fix,792/2],[fix + 612/2,792/2],[fix,0],[fix + 612/2,0]]
     transP = [[fix + 612/2,792/2],[fix,792/2],[fix + 612/2,0],[fix,0]]
-
 
     print("2/2 Reordenando: ")
     pr = 0
